@@ -1,0 +1,28 @@
+
+# Zig Build Output
+zig-out/
+zig-cache/
+
+# Compiled Output
+*.exe
+*.dll
+*.so
+*.dylib
+*.o
+*.a
+*.lib
+
+# Debug Symbols
+*.pdb
+
+# Editor Directories and Files
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+.zig-cache
