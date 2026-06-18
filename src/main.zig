@@ -77,7 +77,15 @@ const LabzServer = struct {
                 else => return std.debug.print("Failed to receive http request: {t}", .{err}),
             };
 
-            responseJson(&request, .ok, "{ \"status\": \"Okay\" }") catch |err| {
+            const response = .{
+                .status = "ok",
+            };
+
+            const json = std.json.Stringify.valueAlloc(self.gpa, response, .{}) catch |err| switch (err) {
+                error.OutOfMemory => return std.debug.print("Failed to serialize json\n", .{}),
+            };
+
+            responseJson(&request, .ok, json) catch |err| {
                 return std.debug.print("Failed to respond http request: {t} \n", .{err});
             };
         }
